@@ -21,7 +21,7 @@ public class Sniffer implements Callable<List<File>>
     }
 
     @Override
-    public ArrayList<File> call() throws Exception
+    public ArrayList<File> call()
     {
         System.out.println(Thread.currentThread().getName());
 
@@ -79,7 +79,6 @@ public class Sniffer implements Callable<List<File>>
 
                     futureList = executorService.invokeAll(snifferArrayList);
 
-
                     for (Future<List<File>> future : futureList)
                     {
                         List<File> fileList;
@@ -88,7 +87,11 @@ public class Sniffer implements Callable<List<File>>
                             fileList = future.get();
                             for (File file : fileList) // future.get() renvoie une liste de File fichiers répondant aux critères +-1 jour
                             {
-                                System.out.println(file);
+                                System.out.println("merde");
+                                if(file.isFile())
+                                {
+                                    System.out.println("Dossier parent : " + file.getParent() + " nom du fichier " + file.getName());
+                                }
                             }
                         }
 
