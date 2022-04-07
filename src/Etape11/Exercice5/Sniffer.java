@@ -36,11 +36,10 @@ public class Sniffer implements Callable<List<File>>
         {
             LocalDate dateFichierCourant = Instant.ofEpochMilli(file.lastModified()).atZone(ZoneId.systemDefault()).toLocalDate();
 
-
             if (dateFichierCourant.isAfter(now.minusDays(1)) && dateFichierCourant.isBefore(now.plusDays(1)))
+            {
                 fileArrayList.add(file);
-
-
+            }
         }
         return fileArrayList;
     }
@@ -87,31 +86,24 @@ public class Sniffer implements Callable<List<File>>
                             fileList = future.get();
                             for (File file : fileList) // future.get() renvoie une liste de File fichiers répondant aux critères +-1 jour
                             {
-                                System.out.println("merde");
                                 if(file.isFile())
                                 {
                                     System.out.println("Dossier parent : " + file.getParent() + " nom du fichier " + file.getName());
                                 }
                             }
                         }
-
-
                     }
                 }
-
-
             } else
             {
                 System.err.println("Merci d'entrez un chemin valide ! ");
                 System.exit(-1);
             }
-
         } else
         {
             System.err.println("Merci d'entrez un chemin valide ! (Le chemin pointe vers un fichier et non un dossier)");
             System.exit(-1);
         }
-
         System.exit(0);
     }
 
