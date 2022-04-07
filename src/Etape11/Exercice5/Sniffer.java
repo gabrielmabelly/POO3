@@ -5,9 +5,7 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.concurrent.*;
 
 public class Sniffer implements Callable<List<File>>
@@ -23,7 +21,7 @@ public class Sniffer implements Callable<List<File>>
     @Override
     public ArrayList<File> call()
     {
-        System.out.println(Thread.currentThread().getName());
+        System.out.println( "[" + Thread.currentThread().getName() + "] Je cherche les fichiers");
 
         ArrayList<File> fileArrayList = new ArrayList<>();
         LocalDate now = LocalDate.now();
@@ -88,7 +86,7 @@ public class Sniffer implements Callable<List<File>>
                             {
                                 if(file.isFile())
                                 {
-                                    System.out.println("Dossier parent : " + file.getParent() + " nom du fichier " + file.getName());
+                                    System.out.println("Dossier parent : " + file.getParent() + " | Nom du fichier : " + file.getName());
                                 }
                             }
                         }
