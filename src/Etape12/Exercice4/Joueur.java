@@ -15,7 +15,6 @@ public class Joueur extends Thread
     {
         this.listNumerosMa = listNuméroMa;
         this.listNumeros = listNumeros;
-        System.out.println(this.listNumeros);
         this.nom = nom;
         this.aGagné = false;
         this.gagneOverall = gagneOverall;
@@ -27,29 +26,11 @@ public class Joueur extends Thread
     {
         while (!aGagné)
         {
-
-//            System.out.println("LISTE NUMERO" + Thread.currentThread().getName() + listNumeros);
-//            System.out.println("LISTE NUMERO MA" + Thread.currentThread().getName() + listNumerosMa);
-
-
             if (listNumerosMa.containsAll(listNumeros))
             {
-
-
-                System.out.println(Thread.currentThread().getName() + listNumerosMa + "MERDEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
-
-                System.out.println(Thread.currentThread() + " " + listNumeros);
-                aGagné = true;
+                aGagné = true; // Si la liste de ma contient TOUS les numéros du joueur alors aGagné passe à true ==> Sera utilisé par Ma pour déterminer le vainqueur
             }
-
-            if (this.gagneOverall)
-            {
-                this.interrupt();
-            }
-
         }
-
-
     }
 
 }

@@ -1,6 +1,8 @@
 package Etape12.Exercice4;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Random;
 
 public class Ma extends Thread
@@ -30,12 +32,24 @@ public class Ma extends Thread
     @Override
     public void run()
     {
-        while (!j1.aGagné && !j2.aGagné && !j3.aGagné && !j4.aGagné)
+        for (int i = 5; i >= 0; i--)
         {
-            System.out.println(this.listeNuméroTirés);
             try
             {
-                Thread.sleep(100);
+                Thread.sleep(1000);
+                System.out.println("Début du loto dans : " + i); // Compte à rebour comme demandé
+            } catch (InterruptedException e)
+            {
+                e.printStackTrace();
+            }
+        }
+        while (!j1.aGagné && !j2.aGagné && !j3.aGagné && !j4.aGagné)
+        {
+            Collections.sort(listeNuméroTirés); // Tri de la liste (plus lisible)
+            System.out.println(this.listeNuméroTirés); // On affiche les tirages de Ma
+            try
+            {
+                Thread.sleep(100); // Petit sleep histoire de voir l'éxécution du programme
             } catch (InterruptedException e)
             {
                 e.printStackTrace();
@@ -48,35 +62,31 @@ public class Ma extends Thread
                 listeNuméroTirés.add(temp);
             }
 
-            if (j1.aGagné)
-            {
 
-                gagneOverall = true;
-                System.out.println(j1.nom + "(" + Thread.currentThread().getName() + ")" + " a gagné");
-                this.interrupt();
-            }
-            if (j2.aGagné)
-            {
-                gagneOverall = true;
-                System.out.println(j2.nom + "(" + Thread.currentThread().getName() + ")" + " a gagné");
-                this.interrupt();
-
-            }
-            if (j3.aGagné)
-            {
-                gagneOverall = true;
-                System.out.println(j3.nom + "(" + Thread.currentThread().getName() + ")" + " a gagné");
-                this.interrupt();
-
-            }
-            if (j4.aGagné)
-            {
-                gagneOverall = true;
-                System.out.println(j4.nom + "(" + Thread.currentThread().getName() + ")" + " a gagné");
-                this.interrupt();
-
-            }
-
+        }
+        if (j1.aGagné)
+        {
+            gagneOverall = true;
+            System.out.println(j1.nom + "(" + Thread.currentThread().getName() + ")" + " a gagné");
+            this.interrupt();
+        }
+        if (j2.aGagné)
+        {
+            gagneOverall = true;
+            System.out.println(j2.nom + "(" + Thread.currentThread().getName() + ")" + " a gagné");
+            this.interrupt();
+        }
+        if (j3.aGagné)
+        {
+            gagneOverall = true;
+            System.out.println(j3.nom + "(" + Thread.currentThread().getName() + ")" + " a gagné");
+            this.interrupt();
+        }
+        if (j4.aGagné)
+        {
+            gagneOverall = true;
+            System.out.println(j4.nom + "(" + Thread.currentThread().getName() + ")" + " a gagné");
+            this.interrupt();
         }
 
     }
