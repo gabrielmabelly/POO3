@@ -1,6 +1,8 @@
 package Etape3.Exercice1;
 
 import java.io.*;
+import java.net.ServerSocket;
+import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class readWriteInteger2
@@ -21,6 +23,7 @@ public class readWriteInteger2
 
             DataOutputStream dataOutputStream = new DataOutputStream(fileOutputStream);
             DataInputStream dataInputStream = new DataInputStream(fileInputStream);
+
 
 
             for (int i = 0; i < chart.length; i++)

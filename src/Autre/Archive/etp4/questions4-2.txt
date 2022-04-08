@@ -1,0 +1,12 @@
+1. 
+Si l'on modifie le serialVersionUID entre l'enregistrement et la relecture, la fonction de relecture lancera une exception de type InvalidClassException 
+
+Exemple :
+java.io.InvalidClassException: etp4.Mobile; local class incompatible: stream classdesc serialVersionUID = 123, local class serialVersionUID = 1233
+
+
+2.
+Sans utiliser de SVUID, même exception qu'au dessus, avec des SVUID générés par la JVM
+java.io.InvalidClassException: etp4.Mobile2; local class incompatible: stream classdesc serialVersionUID = 6213957966189592489, local class serialVersionUID = 1575138989666363110
+
+En utilisant un SVUID, la serialisation fonctionne normalement en mettant à 0 une valeur numérique non renseignée pendant l'enregistrement (la masse du téléphone par exemple)

@@ -1,0 +1,28 @@
+package POO3.TP.Threads.debat2miagistes;
+
+public class SingleMike {
+
+	private static SingleMike mike=null; 
+	
+	private SingleMike() {
+	}
+
+	public SingleMike getMicro() {
+		if (mike==null) {
+			mike=new SingleMike();}
+		return mike;
+	}
+	
+	public void parlerDansLeMicro(String qui) // dans ce cas il y a entrelacement
+	//public synchronized void parlerDansLeMicro(String qui)
+	{
+		for (int i=1;i<5;i++)
+		{
+			try {
+				Thread.sleep(500);	
+				System.out.println(">"+ qui + " ma "+ i +"eme phrase ");
+				}
+			catch (InterruptedException e)	{e.printStackTrace();}
+		}
+	}
+}
